@@ -10,7 +10,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Dohsray | Real problems. Practical solutions.",
-  description: "Dohsray builds focused digital products that solve real problems. Founded by Kao Vichet in Cambodia.",
+  description: "Dohsray: public products designed and built by Kao Vichet in Cambodia, each solving a real problem in communication, security, health and community.",
 };
 
 export default function RootLayout({

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, Code2, Menu, Moon, Search, Sun, X } from "lucide-react";
+import { ArrowDown, ArrowDownRight, ArrowRight, ArrowUpRight, BriefcaseBusiness, Check, ChevronLeft, ChevronRight, Code2, Lightbulb, Menu, Moon, ScanSearch, Search, Sun, Target, X } from "lucide-react";
 import { useEffect, useState, type CSSProperties, type PointerEvent } from "react";
 import { ContactForm } from "@/components/contact-form";
 import { CursorFollower } from "@/components/cursor";
@@ -42,6 +42,27 @@ function spotlight(event: Pointer) {
   const rect = el.getBoundingClientRect();
   el.style.setProperty("--mx", `${event.clientX - rect.left}px`);
   el.style.setProperty("--my", `${event.clientY - rect.top}px`);
+}
+
+// Project thumbnail: the live site in a desktop window and a phone, or the illustration if there is no screenshot.
+// On hover the page scrolls inside both screens.
+function Thumb({ solution, hero = false }: { solution: Solution; hero?: boolean }) {
+  if (!solution.image) return <div className="card-scale"><SolutionVisual solution={solution} /></div>;
+  const domain = (solution.url ?? "").replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "");
+  return <div className={hero ? "device-stage is-hero" : "device-stage"}>
+    <span className="stage-glow" />
+    <div className="shot-frame">
+      <div className="shot-bar"><i /><i /><i /><span>{domain}</span></div>
+      <div className="shot-viewport">
+        <Image src={solution.image} alt={`${solution.title} website`} width={1280} height={2400} className="shot-img"
+          sizes={hero ? "(max-width: 720px) 90vw, 560px" : "(max-width: 640px) 80vw, (max-width: 1100px) 40vw, 340px"} />
+      </div>
+      <span className="shot-shine" />
+    </div>
+    {solution.imageMobile && <div className="phone">
+      <div className="phone-screen"><Image src={solution.imageMobile} alt="" width={480} height={2092} className="shot-img" sizes="140px" /></div>
+    </div>}
+  </div>;
 }
 
 // Sections whose background reacts to the mouse (hero glow, contact glow).
@@ -157,14 +178,13 @@ export function Portfolio() {
       <section className="hero" onPointerMove={trackPointer}>
         <div className="hero-bg" aria-hidden><span className="hero-grid" /><span className="hero-spot" /><span className="orb orb-a" /><span className="orb orb-b" /></div>
         <div className="section-wrap hero-inner">
-          <p className="hero-badge"><span className="pulse" />Dohsray · ដោះស្រាយ · &ldquo;to solve&rdquo; in Khmer</p>
           <h1 className="hero-title">
             <span className="line"><Words text="Real problems." /></span>
             <span className="line is-muted"><Words text="Practical solutions." offset={2} /></span>
           </h1>
           <div className="hero-bottom">
             <div className="hero-copy">
-              <p>I&apos;m Kao Vichet, founder of Dohsray. I build focused digital solutions for real communication, security, and community needs.</p>
+              <p>I&apos;m Kao Vichet, founder of Dohsray. Dohsray is where I share the public products I design and build myself: focused solutions for real communication, security, health and community needs.</p>
               <div className="hero-actions">
                 <a href="#work" className="primary-link" {...magnetic}>Explore my solutions <span><ArrowDownRight size={17} /></span></a>
                 <a href="#about" className="text-link">More about me <ArrowRight size={16} /></a>
@@ -185,7 +205,7 @@ export function Portfolio() {
         <div className="section-wrap">
           <div className="section-heading-row reveal" data-reveal>
             <div><p className="section-kicker">Every product is a solution</p><h2 className="split-title"><SplitTitle lines={["Built around", "real problems."]} /></h2></div>
-            <p className="section-note">Each product I build starts with a real problem people face, and exists to solve it. Open any one to see the problem, the solution, and the impact.</p>
+            <p className="section-note">Every product here is a public project I designed and built myself. Each one starts with a real problem people face, and exists to solve it. Open any one to see the problem, the solution, and the impact.</p>
           </div>
           <div className="solutions-toolbar reveal" data-reveal>
             <div className="filter-row" role="group" aria-label="Filter solutions">
@@ -204,7 +224,7 @@ export function Portfolio() {
             {shown.map((s, i) => <button key={s.id} className="project-card" data-cursor="View" style={{ "--d": `${(i % CARD_LIMIT) * 70}ms` } as CSSProperties} onClick={() => setSelected(s)} aria-label={`Open ${s.title} solution details`}>
               <div className={`card-media ${s.tone}`} onPointerMove={spotlight}>
                 <span className="visual-grid" aria-hidden />
-                <div className="card-scale"><SolutionVisual solution={s} /></div>
+                <Thumb solution={s} />
                 <span className="visual-sheen" aria-hidden />
                 <span className="card-num">{s.id}</span>
                 <span className="card-arrow"><ArrowUpRight size={18} /></span>
@@ -279,22 +299,56 @@ export function Portfolio() {
     </footer>
 
     {selected && <div className="project-modal" role="dialog" aria-modal="true" aria-labelledby="project-title" onMouseDown={(e) => { if (e.target === e.currentTarget) setSelected(null); }}>
-      <article className="modal-panel">
-        <div className="modal-top"><span>Solution {selected.id} / {selected.status}</span><button className="modal-close" onClick={() => setSelected(null)} aria-label="Close solution details"><X size={20} /></button></div>
-        <div className={`modal-visual ${selected.tone}`}><span className="visual-grid" aria-hidden /><SolutionVisual solution={selected} /></div>
-        <div className="modal-content">
-          <p className="section-kicker">{selected.category} / {selected.type}</p>
-          <h2 id="project-title">{selected.title}</h2>
-          <p className="modal-summary">{selected.summary}</p>
-          <div className="modal-facts"><div><span>Role</span><strong>{selected.role}</strong></div><div><span>Status</span><strong>{selected.status}</strong></div></div>
-          <div className="case-grid">
-            <div><span>01 / Problem</span><p>{selected.problem}</p></div>
-            <div><span>02 / Solution</span><p>{selected.solution}</p></div>
-            <div><span>03 / Impact</span><p>{selected.impact}</p></div>
+      <article className="modal-panel no-scrollbar" key={selected.id}>
+        <button className="modal-close" onClick={() => setSelected(null)} aria-label="Close solution details"><X size={20} /></button>
+
+        <header className={`modal-hero ${selected.tone}`}>
+          <span className="visual-grid" aria-hidden />
+          <div className="modal-hero-copy">
+            <p className="modal-eyebrow">Solution {selected.id} · {selected.category}</p>
+            <h2 id="project-title">{selected.title}</h2>
+            <p className="modal-type">{selected.type}</p>
+            <span className="modal-status">{selected.status}</span>
           </div>
-          <div className="stack-row">{selected.stack.map((item) => <span key={item}>{item}</span>)}</div>
-          <a href="#contact" className="modal-cta" onClick={() => setSelected(null)}>Build something together <ArrowRight size={18} /></a>
+          <div className="modal-hero-visual" aria-hidden><Thumb solution={selected} hero /></div>
+        </header>
+
+        <div className="modal-body">
+          <div className="modal-main">
+            <p className="modal-summary">{selected.summary}</p>
+            <div className="case-cards">
+              {([["Problem", ScanSearch, selected.problem], ["Solution", Lightbulb, selected.solution], ["Impact", Target, selected.impact]] as const).map(([label, Icon, text], i) => (
+                <div className="case-card" key={label} style={{ "--d": `${0.3 + i * 0.08}s` } as CSSProperties}>
+                  <span className="case-icon"><Icon size={18} /></span>
+                  <div><small>0{i + 1} · {label}</small><p>{text}</p></div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <aside className="modal-side">
+            <dl className="modal-facts">
+              <div><dt>Role</dt><dd>{selected.role}</dd></div>
+              <div><dt>Status</dt><dd><span className="status-dot" />{selected.status}</dd></div>
+              <div><dt>Category</dt><dd>{selected.category}</dd></div>
+            </dl>
+            <div className="stack-row">{selected.stack.map((item) => <span key={item}>{item}</span>)}</div>
+            {selected.url && <a className="side-link" href={selected.url} target="_blank" rel="noreferrer"><span><small>Website</small>{selected.url.replace(/^https?:\/\/(www\.)?/, "").replace(/\/$/, "")}</span><ArrowUpRight size={18} /></a>}
+            {selected.bot && <a className="side-link" href={selected.bot} target="_blank" rel="noreferrer"><span><small>Telegram bot</small>@{selected.bot.split("/").pop()}</span><ArrowUpRight size={18} /></a>}
+            <a href="#contact" className="modal-cta" onClick={() => setSelected(null)}>Build something together <ArrowRight size={18} /></a>
+          </aside>
         </div>
+
+        <footer className="modal-nav">
+          {[-1, 1].map((step) => {
+            const other = solutions[(solutions.indexOf(selected) + step + solutions.length) % solutions.length];
+            return solutions.length > 1 && <button key={step} className={step < 0 ? "is-prev" : "is-next"} onClick={() => setSelected(other)}>
+              {step < 0 && <ChevronLeft size={18} />}
+              <span><small>{step < 0 ? "Previous" : "Next"}</small>{other.title}</span>
+              {step > 0 && <ChevronRight size={18} />}
+            </button>;
+          })}
+        </footer>
       </article>
     </div>}
   </div>;

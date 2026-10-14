@@ -16,17 +16,14 @@ export function CursorFollower() {
 
     const root = document.documentElement;
     root.classList.add("has-cursor");
-    let x = -100, y = -100, tx = -100, ty = -100;
-    let frame = requestAnimationFrame(function loop() {
-      x += (tx - x) * 0.18;
-      y += (ty - y) * 0.18;
-      ring.style.translate = `${x}px ${y}px`;
-      frame = requestAnimationFrame(loop);
-    });
+    // Follows the mouse 1:1 (no easing), drawn once per frame.
+    let x = -100, y = -100, frame = 0;
+    const draw = () => { frame = 0; ring.style.translate = `${x}px ${y}px`; };
 
     const move = (event: PointerEvent) => {
       if (event.pointerType !== "mouse") return;
-      tx = event.clientX; ty = event.clientY;
+      x = event.clientX; y = event.clientY;
+      if (!frame) frame = requestAnimationFrame(draw);
       ring.classList.add("is-active");
     };
     const over = (event: PointerEvent) => {

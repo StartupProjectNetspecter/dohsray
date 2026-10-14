@@ -1,4 +1,4 @@
-import { Heart, Link2Off, Lock, MessageCircle, PenLine, ShieldCheck, Trash2, UserX } from "lucide-react";
+import { Code2, Heart, Link2Off, Lock, MessageCircle, PenLine, Pill, ShieldCheck, Trash2, TriangleAlert, UserX, Users } from "lucide-react";
 import type { Solution } from "@/data/solutions";
 
 export function SolutionVisual({ solution }: { solution: Solution }) {
@@ -6,6 +6,8 @@ export function SolutionVisual({ solution }: { solution: Solution }) {
     case "confession": return <ConfessionVisual />;
     case "tracker": return <TrackerVisual />;
     case "shield": return <ShieldVisual />;
+    case "portfolio": return <PortfolioVisual />;
+    case "health": return <HealthVisual />;
     default: return <WindowVisual />;
   }
 }
@@ -55,6 +57,44 @@ function ShieldVisual() {
       <span className="threat t1"><Link2Off size={13} /> Phishing link blocked</span>
       <span className="threat t2"><UserX size={13} /> Spam bot removed</span>
       <span className="threat t3"><Lock size={13} /> Group protected</span>
+    </div>
+  );
+}
+
+function PortfolioVisual() {
+  return (
+    <div className="v-portfolio" aria-hidden>
+      <div className="pf-window">
+        <div className="pf-bar"><i /><i /><i /><span>vichetkao.com</span></div>
+        <div className="pf-body">
+          <div className="pf-head"><span className="pf-avatar" /><div><b>Kao Vichet</b><small>Software Developer &amp; Data Science</small></div></div>
+          <p className="pf-title">I build clean, reliable digital products.</p>
+          <div className="pf-stats"><span><b>15+</b> Projects</span><span className="pf-uptime"><i /> Career uptime</span></div>
+          <div className="pf-tiles"><span /><span /><span /></div>
+        </div>
+      </div>
+      <span className="pf-badge"><Code2 size={14} /> Full stack · AI</span>
+    </div>
+  );
+}
+
+function HealthVisual() {
+  return (
+    <div className="v-health" aria-hidden>
+      <div className="hl-card">
+        <div className="hl-head"><span className="hl-plate" /><div><b>Meal scan</b><small>Fried rice · just now</small></div></div>
+        <div className="hl-body">
+          <div className="hl-score">
+            <svg viewBox="0 0 36 36"><circle cx="18" cy="18" r="15.5" className="hl-track" /><circle cx="18" cy="18" r="15.5" className="hl-ring" /></svg>
+            <span><b>72</b><small>Safety</small></span>
+          </div>
+          <div className="hl-alerts">
+            <span className="hl-danger"><TriangleAlert size={13} /> Peanut detected</span>
+            <span className="hl-safe"><Pill size={13} /> Medicine safe</span>
+          </div>
+        </div>
+      </div>
+      <span className="hl-family"><Users size={14} /> Shared with Mom</span>
     </div>
   );
 }

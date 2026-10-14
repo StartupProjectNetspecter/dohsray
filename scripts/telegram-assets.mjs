@@ -22,7 +22,8 @@ const banner = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" w
   <rect width="1280" height="720" fill="url(#g2)"/>
   <g transform="translate(96 150) scale(1.5)">${logo}</g>
   <text x="96" y="420" font-family="${sans}" font-size="128" font-weight="700" fill="#f3f3ee" letter-spacing="-5">Dohsray</text>
-  <text x="100" y="482" font-family="${khmer}" font-size="34" fill="#9db1ff">ដោះស្រាយ <tspan font-family="${sans}" fill="#a3a39a">·  “to solve” in Khmer</tspan></text>
+  <text x="100" y="488" font-family="${khmer}" font-size="40" font-weight="700" fill="#9db1ff">ដោះស្រាយ</text>
+  <text x="300" y="484" font-family="${sans}" font-size="30" fill="#a3a39a">“to solve” in Khmer</text>
   <text x="100" y="568" font-family="${sans}" font-size="40" font-weight="600" fill="#f3f3ee">Real problems. <tspan fill="#a3a39a" font-weight="400">Practical solutions.</tspan></text>
   <g font-family="${sans}" font-size="22" font-weight="600" fill="#f3f3ee">
     <rect x="100" y="612" width="150" height="48" rx="24" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".16"/><text x="175" y="643" text-anchor="middle">Projects</text>
@@ -33,9 +34,9 @@ const banner = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" w
     <rect x="760" y="170" width="420" height="380" rx="32" fill="#ffffff" fill-opacity=".05" stroke="#ffffff" stroke-opacity=".12"/>
     <circle cx="806" cy="214" r="7" fill="#22c55e"/><text x="824" y="222" font-size="20" fill="#a3a39a">Dohsray bot · online</text>
     <rect x="790" y="256" width="300" height="64" rx="22" fill="#ffffff" fill-opacity=".1"/><text x="814" y="296" fill="#f3f3ee">I have a problem to solve…</text>
-    <rect x="890" y="340" width="260" height="64" rx="22" fill="#2f5bff"/><text x="914" y="380" fill="#ffffff">Let&#39;s solve it together.</text>
-    <rect x="790" y="424" width="210" height="64" rx="22" fill="#ffffff" fill-opacity=".1"/><text x="814" y="464" fill="#f3f3ee">Problem solved</text>
-    <path d="M968 456l8 8 16-18" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="856" y="340" width="296" height="64" rx="22" fill="#2f5bff"/><text x="880" y="380" fill="#ffffff">Let&#39;s solve it together.</text>
+    <rect x="790" y="424" width="248" height="64" rx="22" fill="#ffffff" fill-opacity=".1"/><text x="814" y="464" fill="#f3f3ee">Problem solved</text>
+    <path d="M994 456l8 8 16-18" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
   </g>
   <text x="1184" y="660" text-anchor="end" font-family="${sans}" font-size="24" fill="#a3a39a">@dohsray_bot</text>
 </svg>`;

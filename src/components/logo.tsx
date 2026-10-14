@@ -1,4 +1,4 @@
-// Dohsray mark: a chat bubble holding a "D" and a check mark — "problem solved".
+// Dohsray mark: a chat bubble holding a "D" and a check mark, meaning "problem solved".
 // Same artwork as public/brand/logo.svg and the app icons.
 export function Logo({ className }: { className?: string }) {
   return (

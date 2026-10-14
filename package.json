@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "bot:assets": "node scripts/telegram-assets.mjs",
+    "bot:setup": "node scripts/telegram-setup.mjs",
+    "bot:dev": "node scripts/telegram-dev.mjs",
+    "shots": "node scripts/project-shots.mjs"
   },
   "dependencies": {
     "@fontsource/ibm-plex-mono": "^5.3.0",
