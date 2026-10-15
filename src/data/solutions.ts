@@ -84,6 +84,16 @@ export const solutions: Solution[] = [
     impact: "Calmer, safer decisions at the table, with doctor-ready notes and a family circle that can follow along.",
     stack: ["Health", "AI meal scan", "Family care"],
   },
+  {
+    id: "06", title: "Khmer Music Live", category: "Web", type: "Daily YouTube music bot for Telegram", tone: "orange", status: "Live", role: "Founder and Developer",
+    url: "https://www.khmermusic.live/", image: "/projects/khmermusic.webp", imageMobile: "/projects/khmermusic-mobile.webp",
+    solves: "Music listeners need a simple way to request YouTube songs and follow a consistent daily playlist on Telegram.",
+    summary: "A community music request platform that sends selected YouTube tracks to a Telegram channel every day.",
+    problem: "Song requests can become scattered, repeated or hard to follow when they are collected directly through chat.",
+    solution: "Khmer Music Live lets listeners submit a YouTube URL, add their name optionally, search for a song in the posted history or waiting queue, and follow the daily Telegram delivery at 8:00 PM Cambodia time.",
+    impact: "One organized place for collecting requests, finding songs and sharing a fresh daily playlist with the community.",
+    stack: ["Next.js", "YouTube", "Telegram", "Music queue"],
+  },
 ];
 
 export const categories = ["All", ...Array.from(new Set(solutions.map((s) => s.category)))];

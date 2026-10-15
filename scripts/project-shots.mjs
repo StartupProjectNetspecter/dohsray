@@ -18,6 +18,7 @@ const SITES = [
   { slug: "komnot", url: "https://komnot.org/", wait: 7000 },
   { slug: "vichetkao", url: "https://www.vichetkao.com/" },
   { slug: "sokhapheap", url: "https://sokhapheap.vercel.app/" },
+  { slug: "khmermusic", url: "https://www.khmermusic.live/" },
 ];
 const DESKTOP = { width: 1440, height: 900, scale: 1, maxHeight: 2700 };
 const MOBILE = { width: 390, height: 844, scale: 2, maxHeight: 1700 };
